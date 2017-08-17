@@ -21,5 +21,4 @@ Observable.just("1", "2")
 
 - more friendly name, currently `subscribeBy`.
 - provides fluent api for lifecycle-aware components.
-- provides all RxJava2 Type. Flowable, Observable, Single, Maybe and Completable. 
 - and more
