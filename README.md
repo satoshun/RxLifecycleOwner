@@ -1,5 +1,7 @@
 # RxLifecycleOwner
 
+[![CircleCI](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master.svg?style=svg)](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master)
+
 RxLifecycleOwner respects android architecture lifecycle components.
 
 
