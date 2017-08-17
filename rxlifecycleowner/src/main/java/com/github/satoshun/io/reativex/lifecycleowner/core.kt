@@ -1,10 +1,6 @@
 package com.github.satoshun.io.reativex.lifecycleowner
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.OnLifecycleEvent
-import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.*
 import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
