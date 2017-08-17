@@ -20,3 +20,8 @@ allprojects {
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
+
+ext {
+  archtecture = '1.0.0-alpha8'
+  rxjava2 = '2.1.3'
+}

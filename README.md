@@ -13,7 +13,7 @@ Observable.just("1", "2")
     .doOnDispose {
       Log.d("call doOnDispose", "done")
     }
-    .subscribeBy(this, {
+    .subscribeOf(this, {
       Log.d("call onNext", it)
     })
 ```
@@ -21,6 +21,5 @@ Observable.just("1", "2")
 
 ## todo
 
-- more friendly name, currently `subscribeBy`.
 - provides fluent api for lifecycle-aware components.
 - and more
