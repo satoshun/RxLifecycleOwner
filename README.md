@@ -2,10 +2,14 @@
 
 [![CircleCI](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master.svg?style=svg)](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master)
 
-RxLifecycleOwner respects android architecture lifecycle components.
+RxLifecycleOwner respects android architecture components.
+
+Android architecture components has LifeCycleOwner and ViewModel, RxLifecycleOwner control resource with it.
 
 
-## usage
+## Usage
+
+with LifecycleOwner(common Activity or Fragment)
 
 ```kotlin
 Observable.just("1", "2")
@@ -13,13 +17,21 @@ Observable.just("1", "2")
     .doOnDispose {
       Log.d("call doOnDispose", "done")
     }
-    .subscribeOf(this, {
+    .subscribeOf(this, { // `this` implements LifecycleOwner
       Log.d("call onNext", it)
     })
 ```
 
 
-## todo
-
-- provides fluent api for lifecycle-aware components.
-- and more
+with RxViewModel(common ViewModel)
+ 
+```kotlin
+Observable.just("1", "2")
+    .delay(5, TimeUnit.SECONDS)
+    .doOnDispose {
+      Log.d("call doOnDispose", "done")
+    }
+    .subscribeOf(this, { // `this` extends RxViewModel(like a ViewModel)
+      Log.d("call onNext", it)
+    })
+```
