@@ -1,5 +1,5 @@
 buildscript {
-  ext.kotlin_version = '1.1.4'
+  ext.kotlin_version = '1.1.4-2'
   repositories {
     google()
     jcenter()
@@ -22,6 +22,6 @@ task clean(type: Delete) {
 }
 
 ext {
-  archtecture = '1.0.0-alpha8'
+  archtecture = '1.0.0-alpha9'
   rxjava2 = '2.1.3'
 }
