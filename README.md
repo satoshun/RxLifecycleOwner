@@ -1,6 +1,6 @@
 # RxLifecycleOwner
 
-[![CircleCI](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master.svg?style=svg)](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master)
+[![CircleCI](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master.svg?style=svg)](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master) [![](https://jitpack.io/v/satoshun/RxLifecycleOwner.svg)](https://jitpack.io/#satoshun/RxLifecycleOwner)
 
 RxLifecycleOwner respects [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html). RxJava Stream can follow to architecture Component lifecycle(like a Activity, Fragment or ViewModel).
 
@@ -55,7 +55,11 @@ Observable.just("1", "2")
 
 ## Installation
 
-not published
+```gradle
+maven { url 'https://jitpack.io' }
+
+implementation 'com.github.satoshun:RxLifecycleOwner:0.0.2'
+```
 
 
 ## License
