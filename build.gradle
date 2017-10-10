@@ -1,11 +1,11 @@
 buildscript {
-  ext.kotlin_version = '1.1.4-2'
+  ext.kotlin_version = '1.1.51'
   repositories {
     google()
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.0-beta2'
+    classpath 'com.android.tools.build:gradle:3.0.0-beta7'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
@@ -22,6 +22,6 @@ task clean(type: Delete) {
 }
 
 ext {
-  archtecture = '1.0.0-alpha9'
-  rxjava2 = '2.1.3'
+  archtecture = '1.0.0-beta2'
+  rxjava2 = '2.1.4'
 }

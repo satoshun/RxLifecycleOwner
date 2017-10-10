@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion 26
-  buildToolsVersion "26.0.1"
+  buildToolsVersion "26.0.2"
 
   defaultConfig {
     minSdkVersion 16
@@ -28,5 +28,5 @@ dependencies {
   kapt "android.arch.lifecycle:compiler:${rootProject.ext.archtecture}"
 
   testImplementation 'junit:junit:4.12'
-  testImplementation 'com.google.truth:truth:0.34'
+  testImplementation 'com.google.truth:truth:0.36'
 }
