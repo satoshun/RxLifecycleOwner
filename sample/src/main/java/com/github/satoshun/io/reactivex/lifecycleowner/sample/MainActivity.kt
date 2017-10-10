@@ -1,8 +1,8 @@
 package com.github.satoshun.io.reactivex.lifecycleowner.sample
 
-import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.github.satoshun.io.reactivex.lifecycleowner.CompositeDisposableViewModel
 import com.github.satoshun.io.reactivex.lifecycleowner.subscribeOf
@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.subjects.ReplaySubject
 import java.util.concurrent.*
 
-class MainActivity : LifecycleActivity() {
+class MainActivity : AppCompatActivity() {
 
   private val mainViewModel: MainViewModel by lazy {
     ViewModelProviders.of(this).get(MainViewModel::class.java)
