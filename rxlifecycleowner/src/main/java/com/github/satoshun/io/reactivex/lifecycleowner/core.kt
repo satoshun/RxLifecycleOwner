@@ -14,6 +14,7 @@ internal class LifecycleBoundObserver(
   fun onStateChange(owner: LifecycleOwner, event: Lifecycle.Event) {
     if (targetEvent == event) {
       disposable.takeUnless { it.isDisposed }?.dispose()
+      owner.lifecycle.removeObserver(this)
     }
   }
 }
