@@ -8,7 +8,7 @@ import com.github.satoshun.io.reactivex.lifecycleowner.CompositeDisposableViewMo
 import com.github.satoshun.io.reactivex.lifecycleowner.subscribeOf
 import io.reactivex.Observable
 import io.reactivex.subjects.ReplaySubject
-import java.util.concurrent.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,11 +21,10 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.main_act)
 
     // follow Lifecycle event
-    Observable.just("1", "2")
-        .delay(5, TimeUnit.SECONDS)
+    Observable.interval(3, TimeUnit.SECONDS)
         .doOnDispose { Log.d("call doOnDispose", "done with DESTROY EVENT") }
         .subscribeOf(this, onNext = {
-          Log.d("call onNext", it)
+          Log.d("call onNext", it.toString())
         })
 
     mainViewModel.strings
