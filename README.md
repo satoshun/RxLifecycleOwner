@@ -58,7 +58,7 @@ Observable.just("1", "2")
 ```gradle
 maven { url 'https://jitpack.io' }
 
-implementation 'com.github.satoshun:RxLifecycleOwner:0.0.2'
+implementation 'com.github.satoshun:RxLifecycleOwner:0.1.0'
 ```
 
 

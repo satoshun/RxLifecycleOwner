@@ -49,7 +49,11 @@ Observable.just("1", "2")
 
 ## Installation
 
-not published
+```gradle
+maven { url 'https://jitpack.io' }
+
+implementation 'com.github.satoshun:RxLifecycleOwner:0.1.0'
+```
 
 
 ## License
