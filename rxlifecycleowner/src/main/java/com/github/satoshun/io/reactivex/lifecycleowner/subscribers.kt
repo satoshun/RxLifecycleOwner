@@ -19,7 +19,17 @@ fun <T : Any> Flowable<T>.subscribeOf(
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
-  val lifecycle = owner.lifecycle
+  return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
+}
+
+@MainThread
+fun <T : Any> Flowable<T>.subscribeOf(
+    lifecycle: Lifecycle,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    onNext: (T) -> Unit = onNextEmpty,
+    onError: (Throwable) -> Unit = onErrorEmpty,
+    onComplete: () -> Unit = onCompleteEmpty
+): Disposable {
   val observer = LifecycleBoundObserver(event)
   val disposable = this
       .doOnTerminate { lifecycle.removeObserver(observer) }
@@ -28,6 +38,7 @@ fun <T : Any> Flowable<T>.subscribeOf(
   lifecycle.addObserver(observer)
   return disposable
 }
+
 
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
@@ -37,7 +48,17 @@ fun <T : Any> Observable<T>.subscribeOf(
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
-  val lifecycle = owner.lifecycle
+  return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
+}
+
+@MainThread
+fun <T : Any> Observable<T>.subscribeOf(
+    lifecycle: Lifecycle,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    onNext: (T) -> Unit = onNextEmpty,
+    onError: (Throwable) -> Unit = onErrorEmpty,
+    onComplete: () -> Unit = onCompleteEmpty
+): Disposable {
   val observer = LifecycleBoundObserver(event)
   val disposable = this
       .doOnTerminate { lifecycle.removeObserver(observer) }
@@ -47,6 +68,7 @@ fun <T : Any> Observable<T>.subscribeOf(
   return disposable
 }
 
+
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
     owner: LifecycleOwner,
@@ -54,7 +76,16 @@ fun <T : Any> Single<T>.subscribeOf(
     onSuccess: (T) -> Unit = onNextEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
-  val lifecycle = owner.lifecycle
+  return subscribeOf(owner.lifecycle, event, onSuccess, onError)
+}
+
+@MainThread
+fun <T : Any> Single<T>.subscribeOf(
+    lifecycle: Lifecycle,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    onSuccess: (T) -> Unit = onNextEmpty,
+    onError: (Throwable) -> Unit = onErrorEmpty
+): Disposable {
   val observer = LifecycleBoundObserver(event)
   val disposable = this
       .doOnDispose { lifecycle.removeObserver(observer) }
@@ -72,7 +103,17 @@ fun <T : Any> Maybe<T>.subscribeOf(
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
-  val lifecycle = owner.lifecycle
+  return subscribeOf(owner.lifecycle, event, onSuccess, onError, onComplete)
+}
+
+@MainThread
+fun <T : Any> Maybe<T>.subscribeOf(
+    lifecycle: Lifecycle,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    onSuccess: (T) -> Unit = onNextEmpty,
+    onError: (Throwable) -> Unit = onErrorEmpty,
+    onComplete: () -> Unit = onCompleteEmpty
+): Disposable {
   val observer = LifecycleBoundObserver(event)
   val disposable = this
       .doOnDispose { lifecycle.removeObserver(observer) }
@@ -82,6 +123,7 @@ fun <T : Any> Maybe<T>.subscribeOf(
   return disposable
 }
 
+
 @MainThread
 fun Completable.subscribeOf(
     owner: LifecycleOwner,
@@ -89,7 +131,16 @@ fun Completable.subscribeOf(
     onComplete: () -> Unit = onCompleteEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
-  val lifecycle = owner.lifecycle
+  return subscribeOf(owner.lifecycle, event, onComplete, onError)
+}
+
+@MainThread
+fun Completable.subscribeOf(
+    lifecycle: Lifecycle,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    onComplete: () -> Unit = onCompleteEmpty,
+    onError: (Throwable) -> Unit = onErrorEmpty
+): Disposable {
   val observer = LifecycleBoundObserver(event)
   val disposable = this
       .doOnTerminate { lifecycle.removeObserver(observer) }
