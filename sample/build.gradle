@@ -21,7 +21,7 @@ android {
 
 dependencies {
   implementation project(":rxlifecycleowner")
-//  implementation 'com.github.satoshun:RxLifecycleOwner:0.0.2'
+//  implementation 'com.github.satoshun:RxLifecycleOwner:0.1.1'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

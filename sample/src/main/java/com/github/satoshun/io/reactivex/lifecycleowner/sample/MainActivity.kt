@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         .subscribeOf(this, onNext = {
           Log.d("call onNext", it)
         })
+
+    mainViewModel.strings
+        .doOnDispose { Log.d("call doOnDispose", "done child with DESTROY EVENT") }
+        .subscribeOf(this.lifecycle, onNext = {
+          Log.d("call onNext: Lifecycle", it)
+        })
   }
 }
 
