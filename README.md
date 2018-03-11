@@ -33,7 +33,7 @@ Observable.just("1", "2")
     .doOnDispose {
       Log.d("call doOnDispose", "done")
     }
-    .subscribeOf(this, { // `this` implements LifecycleOwner
+    .subscribeOf(this, { // `this` implements LifecycleOwner like a Activity or Fragment
       Log.d("call onNext", it)
     })
 ```
