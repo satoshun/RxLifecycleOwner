@@ -6,9 +6,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 internal class LifecycleBoundObserver(
-    private val disposable: Disposable,
     private val targetEvent: Lifecycle.Event
 ) : LifecycleObserver {
+
+  lateinit var disposable: Disposable
 
   @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
   fun onStateChange(owner: LifecycleOwner, event: Lifecycle.Event) {
