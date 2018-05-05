@@ -23,14 +23,14 @@ dependencies {
   implementation project(":rxlifecycleowner")
 //  implementation 'com.github.satoshun:RxLifecycleOwner:0.1.1'
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation Libs.kotlin
 
-  implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjava2}"
+  implementation Libs.rx_java
 
-  implementation 'com.android.support:appcompat-v7:27.1.0'
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  implementation Libs.appcompat_v7
+  implementation Libs.constraint_layout
 
-  implementation "android.arch.lifecycle:runtime:${rootProject.ext.archtecture}"
-  implementation "android.arch.lifecycle:extensions:${rootProject.ext.archtecture}"
-  kapt "android.arch.lifecycle:compiler:${rootProject.ext.archtecture}"
+  implementation Libs.arch_runtime
+  implementation Libs.arch_extensions
+  kapt Libs.arch_compiler
 }
