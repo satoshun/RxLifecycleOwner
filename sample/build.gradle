@@ -3,13 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion '27.0.3'
+  compileSdkVersion Vers.compile_sdk
 
   defaultConfig {
     applicationId "com.github.satoshun.io.reactivex.lifecycleowner.sample"
-    minSdkVersion 14
-    targetSdkVersion 27
+    minSdkVersion Vers.min_sdk
+    targetSdkVersion Vers.target_sdk
     versionCode 1
     versionName "1.0"
   }
