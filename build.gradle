@@ -1,20 +1,18 @@
-buildscript {
-  repositories {
-    google()
-    jcenter()
+subprojects {
+  buildscript {
+    repositories {
+      jcenter()
+      google()
+    }
   }
-  dependencies {
-    classpath Libs.android_plugin
-    classpath Libs.kotlin_plugin
-  }
-}
 
-allprojects {
   repositories {
-    google()
     jcenter()
-    maven { url 'https://jitpack.io' }
+    google()
   }
+
+  group = GROUP
+  version = VERSION_NAME
 }
 
 task clean(type: Delete) {
