@@ -20,6 +20,10 @@ internal class LifecycleBoundObserver(
     if (targetEvent == event) {
       disposable.dispose()
       owner.lifecycle.removeObserver(this)
+      return
+    }
+    if (event == Lifecycle.Event.ON_DESTROY) {
+      owner.lifecycle.removeObserver(this)
     }
   }
 }
