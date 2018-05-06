@@ -32,7 +32,6 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - *save_cache
-
   test:
     <<: *android_config
     steps:
@@ -63,6 +62,7 @@ jobs:
       - store_artifacts:
           path: rxlifecycleowner-viewmodel/build/reports/
           destination: /reports/
+
 workflows:
   version: 2
   build_and_test:
