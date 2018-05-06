@@ -15,6 +15,10 @@ private val onNextEmpty: (Any) -> Unit = {}
 private val onErrorEmpty: (Throwable) -> Unit = { throw OnErrorNotImplementedException(it) }
 private val onCompleteEmpty: () -> Unit = {}
 
+/**
+ * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
     owner: LifecycleOwner,
@@ -26,6 +30,10 @@ fun <T : Any> Flowable<T>.subscribeOf(
   return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
 }
 
+/**
+ * Overloaded subscribe function and works with Lifecycle. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
     lifecycle: Lifecycle,
@@ -40,6 +48,10 @@ fun <T : Any> Flowable<T>.subscribeOf(
           .subscribe(onNext, onError, onComplete)
     }
 
+/**
+ * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
     owner: LifecycleOwner,
@@ -51,6 +63,10 @@ fun <T : Any> Observable<T>.subscribeOf(
   return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
 }
 
+/**
+ * Overloaded subscribe function and works with Lifecycle. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
     lifecycle: Lifecycle,
@@ -65,6 +81,10 @@ fun <T : Any> Observable<T>.subscribeOf(
           .subscribe(onNext, onError, onComplete)
     }
 
+/**
+ * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
     owner: LifecycleOwner,
@@ -75,6 +95,10 @@ fun <T : Any> Single<T>.subscribeOf(
   return subscribeOf(owner.lifecycle, event, onSuccess, onError)
 }
 
+/**
+ * Overloaded subscribe function and works with Lifecycle. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
     lifecycle: Lifecycle,
@@ -88,6 +112,10 @@ fun <T : Any> Single<T>.subscribeOf(
           .subscribe(onSuccess, onError)
     }
 
+/**
+ * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
     owner: LifecycleOwner,
@@ -99,6 +127,10 @@ fun <T : Any> Maybe<T>.subscribeOf(
   return subscribeOf(owner.lifecycle, event, onSuccess, onError, onComplete)
 }
 
+/**
+ * Overloaded subscribe function and works with Lifecycle. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
     lifecycle: Lifecycle,
@@ -113,6 +145,10 @@ fun <T : Any> Maybe<T>.subscribeOf(
           .subscribe(onSuccess, onError, onComplete)
     }
 
+/**
+ * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun Completable.subscribeOf(
     owner: LifecycleOwner,
@@ -123,6 +159,10 @@ fun Completable.subscribeOf(
   return subscribeOf(owner.lifecycle, event, onComplete, onError)
 }
 
+/**
+ * Overloaded subscribe function and works with Lifecycle. default [Lifecycle.Event] is
+ * [Lifecycle.Event.ON_DESTROY].
+ */
 @MainThread
 fun Completable.subscribeOf(
     lifecycle: Lifecycle,
