@@ -32,12 +32,41 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - *save_cache
+
+  test:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_cache
       - run:
-          name: Build
-          command: ./gradlew test
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - *save_cache
+      - run:
+          name: Test
+          command: ./gradlew rxlifecycleowner:test
+
+  test_viewmodel:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_cache
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - *save_cache
+      - run:
+          name: Test ViewModel
+          command: ./gradlew rxlifecycleowner-viewmodel:test
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - test:
+          requires:
+            - build
+      - test_viewmodel:
+          requires:
+            - build
