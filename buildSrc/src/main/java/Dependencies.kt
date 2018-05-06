@@ -6,7 +6,6 @@ object Vers {
   val target_sdk = 27
 
   val kotlin = "1.2.41"
-  val couroutine = "0.22.5"
   val support_lib = "27.1.1"
 }
 
@@ -17,12 +16,13 @@ object Libs {
 
   val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
 
-  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.10"
+  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.13"
   val rx_android = "io.reactivex.rxjava2:rxandroid:2.0.2"
 
-  val arch_runtime = "android.arch.lifecycle:runtime:1.1.0"
-  val arch_extensions = "android.arch.lifecycle:extensions:1.1.0"
-  val arch_compiler = "android.arch.lifecycle:compiler:1.1.0"
+  val arch_runtime = "android.arch.lifecycle:runtime:1.1.1"
+  val arch_viewmodel = "android.arch.lifecycle:viewmodel:1.1.1"
+  val arch_extensions = "android.arch.lifecycle:extensions:1.1.1"
+  val arch_compiler = "android.arch.lifecycle:compiler:1.1.1"
   val appcompat_v7 = "com.android.support:appcompat-v7:${Vers.support_lib}"
   val support_annotations = "com.android.support:support-annotations:${Vers.support_lib}"
   val constraint_layout = "com.android.support.constraint:constraint-layout:1.1.0"

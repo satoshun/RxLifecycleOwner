@@ -28,7 +28,7 @@ android {
 dependencies {
   implementation project(":rxlifecycleowner")
   implementation project(":rxlifecycleowner-viewmodel")
-//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.2.0'
+//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.3.0-SNAPSHOT'
 
   implementation Libs.kotlin
 
@@ -37,7 +37,6 @@ dependencies {
   implementation Libs.appcompat_v7
   implementation Libs.constraint_layout
 
-  implementation Libs.arch_runtime
   implementation Libs.arch_extensions
   kapt Libs.arch_compiler
 }
