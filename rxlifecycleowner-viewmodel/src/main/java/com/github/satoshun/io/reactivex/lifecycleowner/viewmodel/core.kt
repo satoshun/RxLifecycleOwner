@@ -15,9 +15,7 @@ interface RxViewModel {
 }
 
 /**
- * sample implementation of [RxViewModel].
- *
- * [Disposable]s will be release when ViewModel finished.
+ * sample implementation of [RxViewModel]. [Disposable]s will be release when ViewModel finished.
  */
 open class CompositeDisposableViewModel : ViewModel(), RxViewModel {
 
