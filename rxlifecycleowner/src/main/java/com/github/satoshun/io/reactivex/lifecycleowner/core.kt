@@ -9,6 +9,19 @@ import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun lifecycleBoundObserver(
+    lifecycle: Lifecycle,
+    targetEvent: Lifecycle.Event,
+    init: (LifecycleBoundObserver) -> Disposable
+): Disposable {
+  val observer = LifecycleBoundObserver(targetEvent)
+  val disposable = init(observer)
+  observer.disposable = disposable
+  lifecycle.addObserver(observer)
+  return disposable
+}
+
 internal class LifecycleBoundObserver(
     private val targetEvent: Lifecycle.Event
 ) : LifecycleObserver {

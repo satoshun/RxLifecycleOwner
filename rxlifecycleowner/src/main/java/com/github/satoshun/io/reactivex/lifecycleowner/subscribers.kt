@@ -3,7 +3,11 @@ package com.github.satoshun.io.reactivex.lifecycleowner
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleOwner
 import android.support.annotation.MainThread
-import io.reactivex.*
+import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Maybe
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.exceptions.OnErrorNotImplementedException
 
@@ -29,16 +33,12 @@ fun <T : Any> Flowable<T>.subscribeOf(
     onNext: (T) -> Unit = onNextEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
-): Disposable {
-  val observer = LifecycleBoundObserver(event)
-  val disposable = this
-      .doOnTerminate { lifecycle.removeObserver(observer) }
-      .subscribe(onNext, onError, onComplete)
-  observer.disposable = disposable
-  lifecycle.addObserver(observer)
-  return disposable
-}
-
+): Disposable =
+    lifecycleBoundObserver(lifecycle, event) { observer ->
+      this
+          .doOnTerminate { lifecycle.removeObserver(observer) }
+          .subscribe(onNext, onError, onComplete)
+    }
 
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
@@ -58,16 +58,12 @@ fun <T : Any> Observable<T>.subscribeOf(
     onNext: (T) -> Unit = onNextEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
-): Disposable {
-  val observer = LifecycleBoundObserver(event)
-  val disposable = this
-      .doOnTerminate { lifecycle.removeObserver(observer) }
-      .subscribe(onNext, onError, onComplete)
-  observer.disposable = disposable
-  lifecycle.addObserver(observer)
-  return disposable
-}
-
+): Disposable =
+    lifecycleBoundObserver(lifecycle, event) { observer ->
+      this
+          .doOnTerminate { lifecycle.removeObserver(observer) }
+          .subscribe(onNext, onError, onComplete)
+    }
 
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
@@ -85,15 +81,12 @@ fun <T : Any> Single<T>.subscribeOf(
     event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
     onSuccess: (T) -> Unit = onNextEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty
-): Disposable {
-  val observer = LifecycleBoundObserver(event)
-  val disposable = this
-      .doOnDispose { lifecycle.removeObserver(observer) }
-      .subscribe(onSuccess, onError)
-  observer.disposable = disposable
-  lifecycle.addObserver(observer)
-  return disposable
-}
+): Disposable =
+    lifecycleBoundObserver(lifecycle, event) { observer ->
+      this
+          .doOnDispose { lifecycle.removeObserver(observer) }
+          .subscribe(onSuccess, onError)
+    }
 
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
@@ -113,16 +106,12 @@ fun <T : Any> Maybe<T>.subscribeOf(
     onSuccess: (T) -> Unit = onNextEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty,
     onComplete: () -> Unit = onCompleteEmpty
-): Disposable {
-  val observer = LifecycleBoundObserver(event)
-  val disposable = this
-      .doOnDispose { lifecycle.removeObserver(observer) }
-      .subscribe(onSuccess, onError, onComplete)
-  observer.disposable = disposable
-  lifecycle.addObserver(observer)
-  return disposable
-}
-
+): Disposable =
+    lifecycleBoundObserver(lifecycle, event) { observer ->
+      this
+          .doOnDispose { lifecycle.removeObserver(observer) }
+          .subscribe(onSuccess, onError, onComplete)
+    }
 
 @MainThread
 fun Completable.subscribeOf(
@@ -140,16 +129,12 @@ fun Completable.subscribeOf(
     event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
     onComplete: () -> Unit = onCompleteEmpty,
     onError: (Throwable) -> Unit = onErrorEmpty
-): Disposable {
-  val observer = LifecycleBoundObserver(event)
-  val disposable = this
-      .doOnTerminate { lifecycle.removeObserver(observer) }
-      .subscribe(onComplete, onError)
-  observer.disposable = disposable
-  lifecycle.addObserver(observer)
-  return disposable
-}
-
+): Disposable =
+    lifecycleBoundObserver(lifecycle, event) { observer ->
+      this
+          .doOnTerminate { lifecycle.removeObserver(observer) }
+          .subscribe(onComplete, onError)
+    }
 
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
