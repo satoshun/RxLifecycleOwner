@@ -28,7 +28,8 @@ android {
 dependencies {
   implementation project(":rxlifecycleowner")
   implementation project(":rxlifecycleowner-viewmodel")
-//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.3.0-SNAPSHOT'
+//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.3.1'
+//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner-viewmodel:0.3.1'
 
   implementation Libs.kotlin
 

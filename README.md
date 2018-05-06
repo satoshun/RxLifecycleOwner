@@ -56,7 +56,7 @@ Observable.just("1", "2")
 ## Installation
 
 ```gradle
-implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.2.0'
+implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.3.1'
 ```
 
 
