@@ -1,7 +1,11 @@
-package com.github.satoshun.io.reactivex.lifecycleowner
+package com.github.satoshun.io.reactivex.lifecycleowner.viewmodel
 
 import com.google.common.truth.Truth
-import io.reactivex.*
+import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Maybe
+import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import java.util.concurrent.TimeUnit

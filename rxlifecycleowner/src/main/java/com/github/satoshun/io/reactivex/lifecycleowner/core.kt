@@ -4,9 +4,6 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
-import android.arch.lifecycle.ViewModel
-import android.support.annotation.CallSuper
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 @Suppress("NOTHING_TO_INLINE")
@@ -38,30 +35,5 @@ internal class LifecycleBoundObserver(
     if (event == Lifecycle.Event.ON_DESTROY) {
       owner.lifecycle.removeObserver(this)
     }
-  }
-}
-
-interface RxViewModel {
-  fun addDisposable(disposable: Disposable)
-  fun onCleared()
-}
-
-/**
- * sample implementation of [RxViewModel].
- *
- * disposables will released when Activity finished(not configuration changed)
- */
-open class CompositeDisposableViewModel : ViewModel(), RxViewModel {
-
-  private val disposables: CompositeDisposable = CompositeDisposable()
-
-  @CallSuper
-  override fun addDisposable(disposable: Disposable) {
-    disposables.add(disposable)
-  }
-
-  @CallSuper
-  override fun onCleared() {
-    disposables.dispose()
   }
 }

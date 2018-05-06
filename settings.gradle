@@ -1,2 +1,3 @@
 include ':rxlifecycleowner'
+include ':rxlifecycleowner-viewmodel'
 include ':sample'
