@@ -1,19 +1,76 @@
 version: 2
-jobs:
-  build:
+references:
+  cache_key: &cache_key
+    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+  restore_cache: &restore_cache
+    restore_cache:
+      <<: *cache_key
+  save_cache: &save_cache
+    save_cache:
+      <<: *cache_key
+      paths:
+        - ~/.gradle
+        - ~/.m2
+  workspace: &workspace
+    ~/workspace
+  android_config: &android_config
+    working_directory: *workspace
     docker:
       - image: circleci/android:api-27-alpha
+    environment:
+      TERM: dumb
+      _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
+
+jobs:
+  build:
+    <<: *android_config
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+      - *restore_cache
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+      - *save_cache
+
+  test:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_cache
       - run:
-          name: Build
-          command: ./gradlew test
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - *save_cache
+      - run:
+          name: Test
+          command: ./gradlew rxlifecycleowner:test
+      - store_artifacts:
+          path: rxlifecycleowner/build/reports/
+          destination: /reports/
+  test_viewmodel:
+    <<: *android_config
+    steps:
+      - checkout
+      - *restore_cache
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - *save_cache
+      - run:
+          name: Test ViewModel
+          command: ./gradlew rxlifecycleowner-viewmodel:test
+      - store_artifacts:
+          path: rxlifecycleowner-viewmodel/build/reports/
+          destination: /reports/
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - test_viewmodel:
+          requires:
+            - build
