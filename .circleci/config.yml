@@ -45,7 +45,9 @@ jobs:
       - run:
           name: Test
           command: ./gradlew rxlifecycleowner:test
-
+      - store_artifacts:
+          path: rxlifecycleowner/build/reports/
+          destination: /reports/
   test_viewmodel:
     <<: *android_config
     steps:
@@ -58,7 +60,9 @@ jobs:
       - run:
           name: Test ViewModel
           command: ./gradlew rxlifecycleowner-viewmodel:test
-
+      - store_artifacts:
+          path: rxlifecycleowner-viewmodel/build/reports/
+          destination: /reports/
 workflows:
   version: 2
   build_and_test:
