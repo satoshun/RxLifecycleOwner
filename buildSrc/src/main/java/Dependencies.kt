@@ -16,7 +16,7 @@ object Libs {
 
   val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
 
-  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.10"
+  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.13"
   val rx_android = "io.reactivex.rxjava2:rxandroid:2.0.2"
 
   val arch_runtime = "android.arch.lifecycle:runtime:1.1.1"
