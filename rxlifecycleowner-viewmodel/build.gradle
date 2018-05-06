@@ -8,7 +8,6 @@ buildscript {
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jetbrains.dokka-android'
 
 android {
@@ -31,9 +30,7 @@ dependencies {
   api Libs.rx_java
   api Libs.arch_runtime
   api Libs.arch_viewmodel
-
-  kapt Libs.arch_compiler
-
+  
   testImplementation Libs.junit
   testImplementation Libs.truth
 }
