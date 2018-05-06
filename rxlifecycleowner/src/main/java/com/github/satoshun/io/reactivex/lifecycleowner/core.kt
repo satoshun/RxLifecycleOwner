@@ -1,6 +1,10 @@
 package com.github.satoshun.io.reactivex.lifecycleowner
 
-import android.arch.lifecycle.*
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.ViewModel
 import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -14,7 +18,11 @@ internal class LifecycleBoundObserver(
   @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
   fun onStateChange(owner: LifecycleOwner, event: Lifecycle.Event) {
     if (targetEvent == event) {
-      disposable.takeUnless { it.isDisposed }?.dispose()
+      disposable.dispose()
+      owner.lifecycle.removeObserver(this)
+      return
+    }
+    if (event == Lifecycle.Event.ON_DESTROY) {
       owner.lifecycle.removeObserver(this)
     }
   }
@@ -41,6 +49,6 @@ open class CompositeDisposableViewModel : ViewModel(), RxViewModel {
 
   @CallSuper
   override fun onCleared() {
-    disposables.takeUnless { disposables.isDisposed }?.dispose()
+    disposables.dispose()
   }
 }
