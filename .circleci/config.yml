@@ -1,5 +1,16 @@
 version: 2
 references:
+  cache_key: &cache_key
+    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+  restore_cache: &restore_cache
+    restore_cache:
+      <<: *cache_key
+  save_cache: &save_cache
+    save_cache:
+      <<: *cache_key
+      paths:
+        - ~/.gradle
+        - ~/.m2
   workspace: &workspace
     ~/workspace
   android_config: &android_config
@@ -16,15 +27,11 @@ jobs:
     <<: *android_config
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+      - *restore_cache
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "sample/build.gradle" }}-{{ checksum  "rxlifecycleowner/build.gradle" }}-{{ checksum  "rxlifecycleowner-viewmodel/build.gradle" }}
+      - *save_cache
       - run:
           name: Build
           command: ./gradlew test
