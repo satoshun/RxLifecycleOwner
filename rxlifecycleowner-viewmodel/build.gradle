@@ -2,18 +2,19 @@ buildscript {
   dependencies {
     classpath Libs.android_plugin
     classpath Libs.kotlin_plugin
+    classpath Libs.dokka_plugin
   }
 }
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
   compileSdkVersion Vers.compile_sdk
 
   defaultConfig {
-    applicationId "com.github.satoshun.io.reactivex.lifecycleowner.sample"
     minSdkVersion Vers.min_sdk
     targetSdkVersion Vers.target_sdk
     versionCode 1
@@ -26,18 +27,15 @@ android {
 }
 
 dependencies {
-  implementation project(":rxlifecycleowner")
-  implementation project(":rxlifecycleowner-viewmodel")
-//  implementation 'com.github.satoshun.RxLifecycleOwner:rxlifecyclerowner:0.2.0'
+  api Libs.kotlin
+  api Libs.rx_java
+  api Libs.arch_runtime
+  api Libs.arch_extensions
 
-  implementation Libs.kotlin
-
-  implementation Libs.rx_java
-
-  implementation Libs.appcompat_v7
-  implementation Libs.constraint_layout
-
-  implementation Libs.arch_runtime
-  implementation Libs.arch_extensions
   kapt Libs.arch_compiler
+
+  testImplementation Libs.junit
+  testImplementation Libs.truth
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push-kotlin.gradle')

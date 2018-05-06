@@ -1,4 +1,4 @@
-package com.github.satoshun.io.reactivex.lifecycleowner
+package com.github.satoshun.io.reactivex.lifecycleowner.viewmodel
 
 import com.google.common.truth.Truth
 import io.reactivex.*
