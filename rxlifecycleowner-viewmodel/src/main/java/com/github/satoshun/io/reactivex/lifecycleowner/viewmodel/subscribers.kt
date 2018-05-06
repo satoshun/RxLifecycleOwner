@@ -13,6 +13,10 @@ private val onNextEmpty: (Any) -> Unit = {}
 private val onErrorEmpty: (Throwable) -> Unit = { throw OnErrorNotImplementedException(it) }
 private val onCompleteEmpty: () -> Unit = {}
 
+/**
+ * Overloaded subscribe function and works with [RxViewModel]. [Disposable] will be released when
+ * [RxViewModel.onCleared] is called.
+ */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
     viewModel: RxViewModel,
@@ -25,6 +29,10 @@ fun <T : Any> Flowable<T>.subscribeOf(
   return disposable
 }
 
+/**
+ * Overloaded subscribe function and works with [RxViewModel]. [Disposable] will be released when
+ * [RxViewModel.onCleared] is called.
+ */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
     viewModel: RxViewModel,
@@ -37,6 +45,10 @@ fun <T : Any> Observable<T>.subscribeOf(
   return disposable
 }
 
+/**
+ * Overloaded subscribe function and works with [RxViewModel]. [Disposable] will be released when
+ * [RxViewModel.onCleared] is called.
+ */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
     viewModel: RxViewModel,
@@ -48,6 +60,10 @@ fun <T : Any> Single<T>.subscribeOf(
   return disposable
 }
 
+/**
+ * Overloaded subscribe function and works with [RxViewModel]. [Disposable] will be released when
+ * [RxViewModel.onCleared] is called.
+ */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
     viewModel: RxViewModel,
@@ -60,6 +76,10 @@ fun <T : Any> Maybe<T>.subscribeOf(
   return disposable
 }
 
+/**
+ * Overloaded subscribe function and works with [RxViewModel]. [Disposable] will be released when
+ * [RxViewModel.onCleared] is called.
+ */
 @MainThread
 fun Completable.subscribeOf(
     viewModel: RxViewModel,
