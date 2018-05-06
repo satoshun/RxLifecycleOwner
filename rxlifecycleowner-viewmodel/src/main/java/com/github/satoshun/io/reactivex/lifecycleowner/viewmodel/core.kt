@@ -5,6 +5,10 @@ import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
+/**
+ * It's a interface for [subscribeOf] methods. It's supposed to be used with [ViewModel] like a
+ * [CompositeDisposableViewModel]
+ */
 interface RxViewModel {
   fun addDisposable(disposable: Disposable)
   fun onCleared()
@@ -13,7 +17,7 @@ interface RxViewModel {
 /**
  * sample implementation of [RxViewModel].
  *
- * disposables will released when Activity finished(not configuration changed)
+ * [Disposable]s will be release when ViewModel finished.
  */
 open class CompositeDisposableViewModel : ViewModel(), RxViewModel {
 
