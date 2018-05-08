@@ -1,6 +1,7 @@
-# RxLifecycleOwner
-
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.RxLifecycleOwner/rxlifecyclerowner/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.satoshun.RxLifecycleOwner/rxlifecyclerowner)
 [![CircleCI](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master.svg?style=svg)](https://circleci.com/gh/satoshun/RxLifecycleOwner/tree/master)
+
+# RxLifecycleOwner
 
 RxLifecycleOwner respects [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html). RxJava Stream can follow to architecture Component lifecycle(like a Activity, Fragment or ViewModel).
 
