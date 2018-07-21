@@ -143,8 +143,7 @@ class SubscribersLifecycleOwnerTest {
 }
 
 private class SimpleLifecycleOwner : LifecycleOwner {
-
-  val registry = LifecycleRegistry(this)
+  val registry = android.arch.lifecycle.LifecycleRegistry(this)
 
   init {
     registry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
