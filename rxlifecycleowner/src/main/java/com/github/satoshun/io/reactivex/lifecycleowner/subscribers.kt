@@ -21,11 +21,11 @@ private val onCompleteEmpty: () -> Unit = {}
  */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
-    owner: LifecycleOwner,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  owner: LifecycleOwner,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
 }
@@ -36,17 +36,17 @@ fun <T : Any> Flowable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
-    lifecycle: Lifecycle,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  lifecycle: Lifecycle,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable =
-    lifecycleBoundObserver(lifecycle, event) { observer ->
-      this
-          .doOnTerminate { lifecycle.removeObserver(observer) }
-          .subscribe(onNext, onError, onComplete)
-    }
+  lifecycleBoundObserver(lifecycle, event) { observer ->
+    this
+        .doOnTerminate { lifecycle.removeObserver(observer) }
+        .subscribe(onNext, onError, onComplete)
+  }
 
 /**
  * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
@@ -54,11 +54,11 @@ fun <T : Any> Flowable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
-    owner: LifecycleOwner,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  owner: LifecycleOwner,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   return subscribeOf(owner.lifecycle, event, onNext, onError, onComplete)
 }
@@ -69,17 +69,17 @@ fun <T : Any> Observable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
-    lifecycle: Lifecycle,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  lifecycle: Lifecycle,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable =
-    lifecycleBoundObserver(lifecycle, event) { observer ->
-      this
-          .doOnTerminate { lifecycle.removeObserver(observer) }
-          .subscribe(onNext, onError, onComplete)
-    }
+  lifecycleBoundObserver(lifecycle, event) { observer ->
+    this
+        .doOnTerminate { lifecycle.removeObserver(observer) }
+        .subscribe(onNext, onError, onComplete)
+  }
 
 /**
  * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
@@ -87,10 +87,10 @@ fun <T : Any> Observable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
-    owner: LifecycleOwner,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  owner: LifecycleOwner,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
   return subscribeOf(owner.lifecycle, event, onSuccess, onError)
 }
@@ -101,16 +101,16 @@ fun <T : Any> Single<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
-    lifecycle: Lifecycle,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  lifecycle: Lifecycle,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable =
-    lifecycleBoundObserver(lifecycle, event) { observer ->
-      this
-          .doOnDispose { lifecycle.removeObserver(observer) }
-          .subscribe(onSuccess, onError)
-    }
+  lifecycleBoundObserver(lifecycle, event) { observer ->
+    this
+        .doOnDispose { lifecycle.removeObserver(observer) }
+        .subscribe(onSuccess, onError)
+  }
 
 /**
  * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
@@ -118,11 +118,11 @@ fun <T : Any> Single<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
-    owner: LifecycleOwner,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  owner: LifecycleOwner,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   return subscribeOf(owner.lifecycle, event, onSuccess, onError, onComplete)
 }
@@ -133,17 +133,17 @@ fun <T : Any> Maybe<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
-    lifecycle: Lifecycle,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  lifecycle: Lifecycle,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable =
-    lifecycleBoundObserver(lifecycle, event) { observer ->
-      this
-          .doOnDispose { lifecycle.removeObserver(observer) }
-          .subscribe(onSuccess, onError, onComplete)
-    }
+  lifecycleBoundObserver(lifecycle, event) { observer ->
+    this
+        .doOnDispose { lifecycle.removeObserver(observer) }
+        .subscribe(onSuccess, onError, onComplete)
+  }
 
 /**
  * Overloaded subscribe function and works with LifecycleOwner. default [Lifecycle.Event] is
@@ -151,10 +151,10 @@ fun <T : Any> Maybe<T>.subscribeOf(
  */
 @MainThread
 fun Completable.subscribeOf(
-    owner: LifecycleOwner,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onComplete: () -> Unit = onCompleteEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  owner: LifecycleOwner,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onComplete: () -> Unit = onCompleteEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
   return subscribeOf(owner.lifecycle, event, onComplete, onError)
 }
@@ -165,13 +165,13 @@ fun Completable.subscribeOf(
  */
 @MainThread
 fun Completable.subscribeOf(
-    lifecycle: Lifecycle,
-    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    onComplete: () -> Unit = onCompleteEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  lifecycle: Lifecycle,
+  event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+  onComplete: () -> Unit = onCompleteEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable =
-    lifecycleBoundObserver(lifecycle, event) { observer ->
-      this
-          .doOnTerminate { lifecycle.removeObserver(observer) }
-          .subscribe(onComplete, onError)
-    }
+  lifecycleBoundObserver(lifecycle, event) { observer ->
+    this
+        .doOnTerminate { lifecycle.removeObserver(observer) }
+        .subscribe(onComplete, onError)
+  }

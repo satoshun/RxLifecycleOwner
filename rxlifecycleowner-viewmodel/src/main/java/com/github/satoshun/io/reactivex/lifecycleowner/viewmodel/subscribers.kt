@@ -19,10 +19,10 @@ private val onCompleteEmpty: () -> Unit = {}
  */
 @MainThread
 fun <T : Any> Flowable<T>.subscribeOf(
-    viewModel: RxViewModel,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  viewModel: RxViewModel,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   val disposable = subscribe(onNext, onError, onComplete)
   viewModel.addDisposable(disposable)
@@ -35,10 +35,10 @@ fun <T : Any> Flowable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Observable<T>.subscribeOf(
-    viewModel: RxViewModel,
-    onNext: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  viewModel: RxViewModel,
+  onNext: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   val disposable = subscribe(onNext, onError, onComplete)
   viewModel.addDisposable(disposable)
@@ -51,9 +51,9 @@ fun <T : Any> Observable<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Single<T>.subscribeOf(
-    viewModel: RxViewModel,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  viewModel: RxViewModel,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
   val disposable = subscribe(onSuccess, onError)
   viewModel.addDisposable(disposable)
@@ -66,10 +66,10 @@ fun <T : Any> Single<T>.subscribeOf(
  */
 @MainThread
 fun <T : Any> Maybe<T>.subscribeOf(
-    viewModel: RxViewModel,
-    onSuccess: (T) -> Unit = onNextEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty,
-    onComplete: () -> Unit = onCompleteEmpty
+  viewModel: RxViewModel,
+  onSuccess: (T) -> Unit = onNextEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty,
+  onComplete: () -> Unit = onCompleteEmpty
 ): Disposable {
   val disposable = subscribe(onSuccess, onError, onComplete)
   viewModel.addDisposable(disposable)
@@ -82,9 +82,9 @@ fun <T : Any> Maybe<T>.subscribeOf(
  */
 @MainThread
 fun Completable.subscribeOf(
-    viewModel: RxViewModel,
-    onComplete: () -> Unit = onCompleteEmpty,
-    onError: (Throwable) -> Unit = onErrorEmpty
+  viewModel: RxViewModel,
+  onComplete: () -> Unit = onCompleteEmpty,
+  onError: (Throwable) -> Unit = onErrorEmpty
 ): Disposable {
   val disposable = subscribe(onComplete, onError)
   viewModel.addDisposable(disposable)

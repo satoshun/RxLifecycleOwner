@@ -8,9 +8,9 @@ import io.reactivex.disposables.Disposable
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun lifecycleBoundObserver(
-    lifecycle: Lifecycle,
-    targetEvent: Lifecycle.Event,
-    init: (LifecycleBoundObserver) -> Disposable
+  lifecycle: Lifecycle,
+  targetEvent: Lifecycle.Event,
+  init: (LifecycleBoundObserver) -> Disposable
 ): Disposable {
   val observer = LifecycleBoundObserver(targetEvent)
   val disposable = init(observer)
@@ -20,7 +20,7 @@ internal inline fun lifecycleBoundObserver(
 }
 
 internal class LifecycleBoundObserver(
-    private val targetEvent: Lifecycle.Event
+  private val targetEvent: Lifecycle.Event
 ) : LifecycleObserver {
 
   lateinit var disposable: Disposable
