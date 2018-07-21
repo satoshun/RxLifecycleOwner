@@ -1,22 +1,23 @@
 object Vers {
-  val agp = "3.1.2"
+  val agp = "3.1.3"
 
   val compile_sdk = 27
   val min_sdk = 14
   val target_sdk = 27
 
-  val kotlin = "1.2.41"
+  val kotlin = "1.2.51"
   val support_lib = "27.1.1"
 }
 
 object Libs {
   val android_plugin = "com.android.tools.build:gradle:${Vers.agp}"
   val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Vers.kotlin}"
+  val ktlint_plugin = "gradle.plugin.org.jlleitschuh.gradle:ktlint-gradle:4.1.0"
   val dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.16"
 
   val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
 
-  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.13"
+  val rx_java = "io.reactivex.rxjava2:rxjava:2.1.16"
   val rx_android = "io.reactivex.rxjava2:rxandroid:2.0.2"
 
   val arch_runtime = "android.arch.lifecycle:runtime:1.1.1"

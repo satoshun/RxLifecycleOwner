@@ -63,7 +63,6 @@ class MainViewModel : CompositeDisposableViewModel() {
   }
 }
 
-
 private class UserNameRepository {
   fun getUserName(): Observable<String> {
     return Observable.just("tom", "ken").delay(5, TimeUnit.SECONDS)
